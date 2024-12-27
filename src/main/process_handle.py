@@ -1,13 +1,14 @@
 from .constructor.autentication_process import autentication_process
-
+from .constructor.login_constructor import login_constructor
+from .constructor.register_constructor import register_constructor
 def start() -> None:
     while True:
         command = autentication_process()
 
         if command == '1': 
-            print('comando 1 foi acionado')
+            login_constructor()
         elif command == '2':
-            print('comando 2 foi acionado')
+            register_constructor()
         elif command == '3':
             exit()
         else:
