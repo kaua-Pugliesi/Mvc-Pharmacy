@@ -15,3 +15,18 @@ class LoginView:
         }
         
         return login_finder_informations
+
+    def do_login_success(self, message: Dict) -> None:
+        os.system('cls||clear')
+        success_message = ''' 
+            Login efetuado com sucesso.
+        '''
+        print(success_message)
+        
+    def do_login_fail(self, error: str) -> None:
+        os.system('cls||clear')
+        fail_message = f''' 
+            Erro no login.
+            Erro: { error }
+        '''
+        print(fail_message)
