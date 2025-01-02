@@ -1,0 +1,80 @@
+
+create table client 
+( 
+idClient serial primary key, 
+Name varchar(60) not null, 
+Cpf char(12), 
+Address varchar(80), 
+Phone char(11), 
+registrationDate date 
+);
+
+-- Table for Employee
+create table employee
+( 
+idEmployee serial primary key, 
+Name varchar(60) not null,
+username varchar(60) not null, 
+Cpf char(12), 
+Address varchar(80), 
+Phone char(11),
+password BYTEA NOT NULL,
+permissionLevel char(1) not null,
+hireDate date 
+);
+
+-- Table for Category
+create table category
+( 
+idCategory serial primary key, 
+description varchar(80), 
+comments varchar(200) 
+);
+
+-- Table for Product
+create table product 
+( 
+idProduct serial primary key, 
+idCategory int references category(idCategory),
+Name varchar(60) not null, 
+quantity int null,
+price numeric(10,2) not null, 
+label varchar(60) 
+);
+
+-- Table for Order
+create table orderr
+( 
+idOrder serial primary key, 
+idClient int not null references client(idClient), 
+idEmployee int not null references employee(idEmployee), 
+paymentMethod text not null, 
+totalValue numeric(10,2), 
+orderDate date
+);
+
+-- Table for Order Details
+create table order_details
+( 
+idOrderDetail serial primary key,
+idOrder int not null references orderr(idOrder), 
+idProduct int not null references product(idProduct),
+quantity int not null
+);
+
+drop table if exists order_details cascade;
+
+-- Drop table for Order
+drop table if exists orderr cascade;
+
+-- Drop table for Product
+drop table if exists product cascade;
+
+-- Drop table for Category
+drop table if exists category cascade;
+
+-- Drop table for Employee
+drop table if exists employee cascade;
+
+-- Drop table for Client
+drop table if exists client cascade;

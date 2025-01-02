@@ -3,7 +3,7 @@ class PropleRegisterController:
     def register(self,registry_informations: Dict) -> Dict: # o self é usado para acessar os atributos e métodos da instância da classe.
         try:
             self.__validate_fields(registry_informations)
-            #enviar para models para cadasto de dados
+            #enviar para models para cadastro de dados
             response = self.__format_response(registry_informations)
             return {"success": True, "message" : response}
         except Exception as error:
